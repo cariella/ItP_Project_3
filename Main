@@ -1,0 +1,102 @@
+import time
+import random
+
+
+def print_pause(message):
+    print(message)
+    time.sleep(2)
+
+
+def intro():
+    print_pause("It's your first paranormal investigation in your town.")
+    print_pause("You selected a vacant house that's apparently haunted, ")
+    print_pause("but you haven't encountered any spirits all night.")
+    print_pause("It's almost 4am.")
+    print_pause("Do you want to pack up your gear and go home...")
+    print_pause("or explore the basement?")
+
+
+def valid_input(prompt, options):
+    while True:
+        option = input(prompt).lower()
+        if option in options:
+            return option
+        print_pause("Please try again.")
+
+
+def first_choice():
+    response = valid_input("Please enter 1 to go home "
+                           "or enter 2 to explore the basement.\n", ["1", "2"])
+    scenarios = ["locked", "scream", "wake up"]
+    scenario = random.choice(scenarios)
+    if response == "1":
+        if scenario == "locked":
+            print_pause("You pack up your gear and head to the front door.")
+            print_pause("But when you try to open the door...")
+            print_pause("you discover that it's jammed.")
+            print_pause("You appear to be trapped in the house.")
+        elif scenario == "scream":
+            print_pause("You pack up your gear and leave the house.")
+            print_pause("But while you're still on the porch...")
+            print_pause("you hear a piercing scream.")
+            print_pause("It's coming from inside the house.")
+            print_pause("You rush back in to see what's going on...")
+            print_pause("The screaming stops as soon as you enter the house.")
+            print_pause("The door slams shut behind you.")
+        elif scenario == "wake up":
+            print_pause("You pack up your gear and leave the house.")
+            print_pause("But as you walk away from the house...")
+            print_pause("everything goes black.")
+            print_pause("You wake up in the house with your gear unpacked.")
+        first_choice()
+    elif response == "2":
+        print_pause("The basement is completely dark,")
+        print_pause("but you walk down carefully to explore.")
+        print_pause("The air is much cooler.")
+        print_pause("You hear low voices coming from the corner.")
+        print_pause("You take a picture with your camera...")
+        print_pause("and the flash reveals a ghostly figure.")
+
+
+def second_choice():
+    print_pause("The ghostly figure apparently did not want to be disturbed.")
+    print_pause("You still can't see anything, but its voice gets louder.")
+    print_pause("WHO GOES THERE?")
+    response = valid_input("Please enter 1 to introduce yourself to the ghost "
+                           "or enter 2 to run.\n", ["1", "2"])
+    if response == "1":
+        print_pause("...")
+        print_pause("YOU ARE A PARANORMAL INVESTIGATOR?")
+        print_pause("...")
+        print_pause("...I HAVE NOT HAD A VISITOR IN 150 YEARS.")
+        print_pause("I SUPPOSE YOU ARE WELCOME TO RETURN")
+        print_pause("BUT PLEASE COME BACK WITHOUT YOUR CAMERA.")
+        print_pause("THE FLASH GIVES ME A HEADACHE.")
+        print_pause("The ghostly figure stops speaking...")
+        print_pause("and when you take another picture,")
+        print_pause("there is nothing to be seen.")
+        play_again()
+    elif response == "2":
+        print_pause("You turn around and run towards the stairs.")
+        print_pause("There is a ghostly roar, then everything goes black.")
+        play_again()
+
+
+def play_again():
+    print_pause("Would you like to play again?")
+    response = valid_input("Please enter 1 to play again or 2 to exit.\n",
+                           ["1", "2"])
+    if response == "1":
+        play_game()
+    elif response == "2":
+        print_pause("Goodbye")
+        exit(0)
+
+
+def play_game():
+    intro()
+    first_choice()
+    second_choice()
+
+
+play_game()
